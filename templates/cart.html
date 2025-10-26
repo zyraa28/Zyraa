@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="cart-section">
+    <h2>Your Shopping Cart</h2>
+
+    {% if cart_items and cart_items|length > 0 %}
+    <div class="cart-container">
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>
+                        <img src="{{ url_for('static', filename='images/' + item.image) }}" alt="{{ item.name }}" class="cart-img">
+                    </td>
+                    <td>{{ item.name }}</td>
+                    <td>${{ item.price }}</td>
+                    <td>
+                        <input type="number" value="{{ item.quantity }}" min="1" class="qty-input">
+                    </td>
+                    <td>${{ item.price * item.quantity }}</td>
+                    <td><a href="#" class="remove-btn">&times;</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="cart-summary">
+            <h3>Cart Summary</h3>
+            <p><strong>Total Items:</strong> {{ cart_items|length }}</p>
+            <p><strong>Subtotal:</strong> ${{ total_price }}</p>
+            <a href="#" class="btn btn-primary">Proceed to Checkout</a>
+        </div>
+    </div>
+    {% else %}
+    <div class="empty-cart">
+        <p>Your cart is empty 😕</p>
+        <a href="{{ url_for('shop') }}" class="btn btn-secondary">Continue Shopping</a>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

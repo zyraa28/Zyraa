@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon_ico/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon_ico/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon_ico/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon_ico/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='favicon_ico/site.webmanifest') }}">
+
+    <title>Zyraa Shop</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Zyraa Shop</h1>
+            <p class="designer">By <strong>Mohd. Saad Uddin</strong></p>
+            <nav>
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('shop') }}">Shop</a>
+                <a href="{{ url_for('cart') }}">Cart</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <strong>Zyraa Shop</strong> | Designed by <strong>Mohd. Saad Uddin</strong></p>
+    </footer>
+</body>
+</html>

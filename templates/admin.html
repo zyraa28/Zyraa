@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Messages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .message-box {
+            background: white;
+            padding: 15px;
+            margin: 10px auto;
+            border-radius: 8px;
+            max-width: 600px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .message-box h3 {
+            color: #444;
+            margin: 0 0 5px;
+        }
+        .message-box p {
+            margin: 4px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>📩 Customer Messages</h1>
+
+    {% if messages %}
+        {% for msg in messages.splitlines() %}
+            {% set parts = msg.split('|') %}
+            <div class="message-box">
+                <h3>{{ parts[0].replace('Name:', '').strip() if parts|length > 0 else 'Unknown Sender' }}</h3>
+                <p><strong>Email:</strong> {{ parts[1].replace('Email:', '').strip() if parts|length > 1 else 'Not provided' }}</p>
+                <p><strong>Message:</strong> {{ parts[2].replace('Message:', '').strip() if parts|length > 2 else msg }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p style="text-align:center;">No messages yet.</p>
+    {% endif %}
+</body>
+</html>
